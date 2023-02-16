@@ -1,0 +1,4 @@
+/* tailwind css 사용을 위한 설정 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
