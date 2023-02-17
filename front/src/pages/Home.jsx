@@ -14,7 +14,8 @@ import {setPost} from "../store/store";
 // axios 기본 url 설정
 import axios from "axios";
 import base_url from "../BaseUrl";
-import PostCard from "../components/PostCard";
+
+// 컴포넌트
 import PostCardScreen from "../components/PostCardScreen";
 
 axios.defaults.baseURL = base_url;
@@ -28,7 +29,7 @@ function Home() {
     // 처음 컴포넌트가 마운트 될 때 실행
     // 외부 api 요청하고 state에 저장함
     useEffect(() => {
-        axios.get(base_url + "/api/post/read").then((res) => {
+        axios.get("/homepost").then((res) => {
             dispatch(setPost(res.data));
         });
     }, []);
