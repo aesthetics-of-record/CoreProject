@@ -12,7 +12,7 @@ module.exports = () => {
             if (!user) {
                 return done(null, false, { reason: '존재하지 않는 아이디입니다.' });
             }
-            const result = await bcrypt.compare(password, user.password);
+            const result = await bcrypt.compare(pw, user.pw);
             if (result) {
                 return done(null, user);
             }
