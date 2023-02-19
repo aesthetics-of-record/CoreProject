@@ -6,7 +6,7 @@ import {useState} from "react";
  * @param {Array.<object>} allTabs
  * @returns {{ currentItem: number, changeItem: (value: unknown) => void}}
  */
-const useTabs = (initialTab, allTabs) => {
+export const useTabs = (initialTab, allTabs) => {
     const [currentIndex, setCurrentIndex] = useState(initialTab);
     if (!allTabs || !Array.isArray(allTabs)) {
         return;
