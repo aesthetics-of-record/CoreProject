@@ -10,7 +10,7 @@ const post = createSlice({
             return post.payload;
         },
         addPost: (state, new_post) => {
-            axios.post(base_url + "/api/post/create", new_post)
+            axios.post(base_url + "/post", new_post)
                 .then((res) => {
                 });
         },

@@ -2,6 +2,7 @@ import {useState} from "react";
 
 /**
  * input에 조건을 추가할 수 있는 hook
+ * 시작할 value 와 조건 함수를 넣으면 된다.
  * @param initialValue {string}
  * @param validator {callback}
  * @returns {{value: unknown, onChange: onChange}}

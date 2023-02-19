@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import {Provider, useDispatch} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
-import store, {setPost} from "./store/store";
+import store from "./store/store";
 import "./index.css";
 import {CookiesProvider} from "react-cookie";
 
