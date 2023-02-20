@@ -11,3 +11,7 @@ export const logInAPI = (data) => {
 export const checkLogInAPI = () => {
   return axios.get("/user/session");
 };
+
+export const registerAPI = (data) => {
+  return axios.post("/user", data);
+};

@@ -20,7 +20,7 @@ router.post(
 );
 
 // 회원가입 요청 post
-router.post("/register", async (req, res) => {
+router.post("/", async (req, res) => {
   // 패스워드 암호화
   const hashed_password = await bcrypt.hash(req.body.pw, 10);
 

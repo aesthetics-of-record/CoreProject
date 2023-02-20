@@ -12,7 +12,6 @@ export const HeaderLoginButton = () => {
   // 업데이트 될 때마다 불려진다. [logIn] 을 추가하면, 이상하게 안 된다. 추후 최적화하자.
   useEffect(() => {
     checkLogInAPI().then((res) => {
-      console.log("렌더링");
       dispatch(setLogIn(res.data.logIn));
     });
   });

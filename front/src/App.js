@@ -3,7 +3,8 @@ import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Tab from "./components/Tab";
 import Login from "./pages/Login";
-
+import Detail from "./pages/Detail";
+import Register from "./pages/Register";
 
 // 기본
 function App() {
@@ -17,8 +18,8 @@ function App() {
           <Route path={"/Marketing"} element={<div>미완2</div>} />
         </Route>
         <Route path={"/login"} element={<Login />} />
-        <Route path={"/register"} element={<span />} />
-        <Route path={"/detail/:id"} element={<span />}></Route>
+        <Route path={"/register"} element={<Register />} />
+        <Route path={"/detail/:id"} element={<Detail />}></Route>
       </Routes>
     </>
   );
