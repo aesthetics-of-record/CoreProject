@@ -4,7 +4,7 @@ const router = require('express').Router();
 // 데이터 읽기
 router.get("/", async (req, res) => {
     console.log("api 요청이 왔습니다~");
-    const result = await post.find().toArray();
+    const result = await Post.find().toArray();
     res.json(result);
 });
 
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     const id = new ObjectId(req.params.id);
 
-    const result = await post.deleteOne({ _id: id });
+    const result = await Post.deleteOne({ _id: id });
     res.send("success");
 });
 
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     console.log(req.body);
 
     //DB에 저장
-    await post.insertOne({
+    await Post.insertOne({
         title: req.body.title,
         content: req.body.content,
         author: req.body.author,

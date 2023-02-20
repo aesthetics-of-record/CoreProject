@@ -13,10 +13,12 @@ import {setPost} from "../store/store";
 // axios : 비동기 HTTP 통신 라이브러리
 // axios 기본 url 설정
 import axios from "axios";
-import base_url from "../BaseUrl";
+import base_url from "../config/BaseUrl";
 
 // 컴포넌트
 import PostCardScreen from "../components/PostCardScreen";
+import { useFadeIn } from "../hooks/useFadeIn";
+import {loadHomePostsAPI} from "../api/post";
 
 axios.defaults.baseURL = base_url;
 
@@ -29,11 +31,12 @@ function Home() {
     // 처음 컴포넌트가 마운트 될 때 실행
     // 외부 api 요청하고 state에 저장함
     useEffect(() => {
-        axios.get("/homepost").then((res) => {
+        loadHomePostsAPI().then((res) => {
             dispatch(setPost(res.data));
         });
     }, []);
 
+    const fadeInH1 = useFadeIn(3, 2);
 
     return (
         <div className={"relative"}>
@@ -44,7 +47,7 @@ function Home() {
             </div>
 
             {/* post[0]는 post가 빈 배열일 때 false를 의미한다. */}
-            <div>{post[0] ? <PostCardScreen/> : []}</div>
+            <div>{post[0] ? <PostCardScreen /> : []}</div>
         </div>
     );
 }
