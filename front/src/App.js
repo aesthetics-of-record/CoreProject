@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Tab />}>
           <Route path={"/"} element={<Home />} />
-          <Route path={"/MyGroup"} element={<div>미완1</div>} />
-          <Route path={"/Marketing"} element={<Marketing />} />
+          <Route path={"/mygroup"} element={<div>미완1</div>} />
+          <Route path={"/marketing"} element={<Marketing />} />
         </Route>
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<Register />} />

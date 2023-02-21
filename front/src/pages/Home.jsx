@@ -1,9 +1,9 @@
-import {useEffect} from "react";
-import {Cookies} from "react-cookie"; // 쿠키를 다루기 위한 라이브러리
+import { useEffect } from "react";
+import { Cookies } from "react-cookie"; // 쿠키를 다루기 위한 라이브러리
 
 // redux toolkit 사용을 위한 라이브러리 및 만든 함수 불러오기
-import {useDispatch, useSelector} from "react-redux";
-import {setPost} from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setPost } from "../store/store";
 
 // sweetalert2 : alert 디자인 라이브러리
 // import Swal from "sweetalert2";
@@ -18,39 +18,49 @@ import base_url from "../config/BaseUrl";
 // 컴포넌트
 import PostCardScreen from "../components/PostCardScreen";
 import { useFadeIn } from "../hooks/useFadeIn";
-import {loadHomePostsAPI} from "../api/post";
+import { loadHomePostsAPI } from "../api/post";
+import { useNavigate } from "react-router-dom";
 
 axios.defaults.baseURL = base_url;
 
-
 function Home() {
-    // state 사용을 위한 리덕스 설정
-    const dispatch = useDispatch();
-    const post = useSelector((state) => state.post);
+  // state 사용을 위한 리덕스 설정
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.post);
+  const navigate = useNavigate();
 
-    // 처음 컴포넌트가 마운트 될 때 실행
-    // 외부 api 요청하고 state에 저장함
-    useEffect(() => {
-        loadHomePostsAPI().then((res) => {
-            dispatch(setPost(res.data));
-        });
-    }, []);
+  // 처음 컴포넌트가 마운트 될 때 실행
+  // 외부 api 요청하고 state에 저장함
+  useEffect(() => {
+    loadHomePostsAPI().then((res) => {
+      dispatch(setPost(res.data));
+    });
+  }, []);
 
-    const fadeInH1 = useFadeIn(3, 2);
+  const onClick = () => {
+    navigate("/write");
+  };
 
-    return (
-        <div className={"relative"}>
-            <div>
+  return (
+    <div className={"relative"}>
+      <div>
         <span className={"mx-8 text-xl font-bold text-slate-600"}>
           충북대학교 동아리
         </span>
-            </div>
+        <button
+          className={
+            "bg-blue-400 text-slate-100 font-bold p-1 px-2 rounded-xl transition hover:scale-110"
+          }
+          onClick={onClick}
+        >
+          동아리추가
+        </button>
+      </div>
 
-            {/* post[0]는 post가 빈 배열일 때 false를 의미한다. */}
-            <div>{post[0] ? <PostCardScreen /> : []}</div>
-        </div>
-    );
+      {/* post[0]는 post가 빈 배열일 때 false를 의미한다. */}
+      <div>{post[0] ? <PostCardScreen /> : []}</div>
+    </div>
+  );
 }
-
 
 export default Home;
