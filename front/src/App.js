@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import Register from "./pages/Register";
 import { Write } from "./pages/Write";
+import { Marketing } from "./pages/Marketing";
 
 // 기본
 function App() {
@@ -14,9 +15,9 @@ function App() {
       <Header />
       <Routes>
         <Route path={"/"} element={<Tab />}>
-          <Route path={""} element={<Home />} />
+          <Route path={"/"} element={<Home />} />
           <Route path={"/MyGroup"} element={<div>미완1</div>} />
-          <Route path={"/Marketing"} element={<div>미완2</div>} />
+          <Route path={"/Marketing"} element={<Marketing />} />
         </Route>
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<Register />} />

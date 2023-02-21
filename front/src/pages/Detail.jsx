@@ -27,6 +27,16 @@ function Detail(props) {
     }
   }
 
+  const onClick = () => {
+    deleteHomePostAPI(id)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div
       className={
@@ -45,15 +55,7 @@ function Detail(props) {
         <div className={"place-self-end"}>
           <button
             className="text-slate-100 font-bold rounded-xl bg-red-400 p-1 w-24 mb-3 shadow-md shadow-red-500/50 transition ease-in-out hover:bg-blue-500 hover:shadow-blue-500"
-            onClick={() => {
-              deleteHomePostAPI(id)
-                .then(() => {
-                  navigate("/");
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            }}
+            onClick={onClick}
           >
             삭제
           </button>
