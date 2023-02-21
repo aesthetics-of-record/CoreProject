@@ -39,12 +39,15 @@ router.get("/session", isLogin, (req, res) => {
 });
 
 router.post("/logout", (req, res, next) => {
-  console.log("로그아웃!");
   req.logout((err) => {
     if (err) {
       return next(err);
     }
-    res.send("success");
+    req.session.destroy(() => {
+      //세션 파괴
+      res.clearCookie("connect.sid"); //쿠키 삭제
+      res.send("success");
+    });
   });
 });
 
