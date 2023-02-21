@@ -11,3 +11,7 @@ export const loadHomePostsAPI = () => {
 export const deleteHomePostAPI = (id) => {
   return axios.delete("/homepost/" + id);
 };
+
+export const addHomePostAPI = (data) => {
+  return axios.post("/homepost", data);
+};

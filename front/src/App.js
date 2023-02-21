@@ -5,6 +5,7 @@ import Tab from "./components/Tab";
 import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import Register from "./pages/Register";
+import { Write } from "./pages/Write";
 
 // 기본
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<Register />} />
         <Route path={"/detail/:id"} element={<Detail />}></Route>
+        <Route path={"/write"} element={<Write />}></Route>
       </Routes>
     </>
   );

@@ -20,13 +20,11 @@ router.delete("/:id", async (req, res) => {
 
 // 데이터 추가
 router.post("/", async (req, res) => {
-  console.log(req.body);
-
   //DB에 저장
   await Post.insertOne({
     title: req.body.title,
     content: req.body.content,
-    author: req.body.author,
+    author: null,
   });
   res.send("success");
 });
