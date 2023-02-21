@@ -15,3 +15,7 @@ export const checkLogInAPI = () => {
 export const registerAPI = (data) => {
   return axios.post("/user", data);
 };
+
+export const logOutAPI = () => {
+  return axios.post("/user/logout");
+};

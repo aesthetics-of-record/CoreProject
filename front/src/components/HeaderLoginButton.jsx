@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { checkLogInAPI } from "../api/user";
+import { checkLogInAPI, logOutAPI } from "../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogIn } from "../store/store";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,9 @@ export const HeaderLoginButton = () => {
             "w-24 bg-blue-500 rounded-xl text-slate-100 p-1 transition duration-300 hover:bg-red-500"
           }
           onClick={() => {
-            navigate("/");
+            logOutAPI().then((res) => {
+              navigate("/");
+            });
           }}
         >
           로그아웃
