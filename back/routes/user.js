@@ -38,4 +38,14 @@ router.get("/session", isLogin, (req, res) => {
   res.json({ logIn: true });
 });
 
+router.post("/logout", (req, res, next) => {
+  console.log("로그아웃!");
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.send("success");
+  });
+});
+
 module.exports = router;
