@@ -4,6 +4,6 @@
 // 테스트용 'http://localhost:80'
 // 테스트용 api 서버 'http://cbnucore.site'
 
-let base_url = "http://localhost:80";
+let base_url = "http://cbnucore.site";
 
 export default base_url;

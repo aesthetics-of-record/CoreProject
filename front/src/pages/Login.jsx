@@ -52,7 +52,7 @@ function Login() {
             "ml-36 w-24 bg-green-600 rounded-xl text-slate-100 p-1 m-3 hover:bg-indigo-500"
           }
           onClick={() => {
-            navigate("../register");
+            navigate("/register");
           }}
         >
           회원가입
