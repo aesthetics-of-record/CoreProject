@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
     title: req.body.title,
     content: req.body.content,
     author: null,
+    id: req.user.id,
   });
   res.send("success");
 });

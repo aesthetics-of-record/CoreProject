@@ -1,8 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTab } from "../store/store";
-import { Cookies } from "react-cookie";
-import { checkLogInAPI } from "../api/user";
 import { HeaderLoginButton } from "./HeaderLoginButton";
 
 function Header() {

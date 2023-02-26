@@ -1,12 +1,9 @@
 import axios from "axios";
 import base_url from "../config/BaseUrl";
 import { useNavigate } from "react-router-dom";
-import { Cookies } from "react-cookie";
 
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { logInAPI } from "../api/user";
-const MySwal = withReactContent(Swal);
 
 axios.defaults.baseURL = base_url;
 
@@ -19,10 +16,36 @@ function Login() {
       id: e.target.id.value,
       pw: e.target.pw.value,
     };
-    logInAPI(data).then(async (res) => {
-      console.log(res.data);
-      navigate("/");
-    });
+    logInAPI(data)
+      .then(async (res) => {
+        if (res.data.success) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            // didOpen: (toast) => {
+            //   toast.addEventListener("mouseenter", Swal.stopTimer);
+            //   toast.addEventListener("mouseleave", Swal.resumeTimer);
+            // },
+          });
+
+          Toast.fire({
+            icon: "success",
+            title: "로그인 성공 !",
+          });
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        Swal.fire({
+          icon: "error",
+          title: "다시 입력 해주세요",
+          text: "아이디/비번이 올바르지 않습니다.",
+        });
+      });
   };
 
   return (

@@ -5,7 +5,7 @@ import { Cookies } from "react-cookie"; // 쿠키를 다루기 위한 라이브�
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../store/store";
 
-// sweetalert2 : alert 디자인 라이브러리
+// sweetalert2 : alerts 디자인 라이브러리
 // import Swal from "sweetalert2";
 // import withReactContent from "sweetalert2-react-content";
 // const MySwal = withReactContent(Swal);
@@ -17,9 +17,10 @@ import base_url from "../config/BaseUrl";
 
 // 컴포넌트
 import PostCardScreen from "../components/PostCardScreen";
-import { useFadeIn } from "../hooks/useFadeIn";
 import { loadHomePostsAPI } from "../api/post";
 import { useNavigate } from "react-router-dom";
+import { checkLogInAPI } from "../api/user";
+import Swal from "sweetalert2";
 
 axios.defaults.baseURL = base_url;
 
@@ -37,8 +38,21 @@ function Home() {
     });
   }, []);
 
+  const loginWarning = () => {
+    Swal.fire({
+      icon: "warning",
+      title: "로그인이 필요합니다.",
+    });
+  };
+
   const onClick = () => {
-    navigate("/write");
+    checkLogInAPI().then((res) => {
+      if (res.data.logIn) {
+        navigate("/write");
+      } else {
+        loginWarning();
+      }
+    });
   };
 
   return (

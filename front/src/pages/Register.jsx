@@ -2,22 +2,47 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import base_url from "../config/BaseUrl";
 import { registerAPI } from "../api/user";
+import Swal from "sweetalert2";
 
 axios.defaults.baseURL = base_url;
 
 function Register() {
   const navigate = useNavigate();
 
+  const idWarning = () => {
+    Swal.fire({
+      icon: "warning",
+      title: "이미 존재하는 아이디입니다.",
+      text: "다른 아이디를 입력 해 주세요.",
+    });
+  };
+
   const onsubmit = (e) => {
     e.preventDefault();
 
     const data = {
-      id: e.target.id.value,
       pw: e.target.pw.value,
+      id: e.target.id.value,
       nickname: e.target.nickname.value,
     };
-    registerAPI().then((res) => {
-      navigate("/");
+    registerAPI(data).then((res) => {
+      if (!res.data.success) {
+        idWarning();
+      } else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "회원가입 성공 !",
+        });
+        navigate("/");
+      }
     });
   };
 

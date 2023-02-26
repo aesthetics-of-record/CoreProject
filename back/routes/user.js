@@ -10,32 +10,37 @@ const router = express.Router();
 router.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/login",
     failureMessage: true,
   }),
   (req, res) => {
-    console.log(req.user.id);
-    res.json({ id: req.user.id });
+    // 로그인 성공시 실행
+    res.json({ success: true });
   }
 );
 
 // 회원가입 요청 post
 router.post("/", async (req, res) => {
-  // 패스워드 암호화
-  const hashed_password = await bcrypt.hash(req.body.pw, 10);
+  id = await User.findOne({ id: req.body.id });
+  // 아이디 존재여부 검사
+  if (id) {
+    res.json({ success: false, message: "존재하는 아이디 입니다." });
+  } else {
+    // 패스워드 암호화
+    const hashed_password = await bcrypt.hash(req.body.pw, 10);
 
-  //DB에 저장
-  await User.insertOne({
-    id: req.body.id,
-    pw: hashed_password,
-    nickname: req.body.nickname,
-  });
-  res.send("success");
+    //DB에 저장
+    await User.insertOne({
+      id: req.body.id,
+      pw: hashed_password,
+      nickname: req.body.nickname,
+    });
+    res.json({ success: true });
+  }
 });
 
 router.get("/session", isLogin, (req, res) => {
   console.log("로그인 되어있습니다!");
-  res.json({ logIn: true });
+  res.json({ logIn: true, id: req.user.id, nickname: req.user.nickname });
 });
 
 router.post("/logout", (req, res, next) => {

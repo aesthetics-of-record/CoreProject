@@ -11,8 +11,7 @@ require("dotenv").config();
 // cors 설정
 const cors = require("cors");
 const whitelist = [
-  "http://3.36.100.60",
-  "http://localhost:80",
+  "http://localhost",
   "http://cbnucore.site",
   "http://localhost:3000",
 ];
@@ -77,6 +76,5 @@ app.use("/user", require("./routes/user.js"));
 // 리액트 라우터 사용을 위한, 기본 url
 // 가장 하단에 적어야한다.
 app.get("*", function (req, res) {
-  console.log(path.join(__dirname, "../front/build/index.html"));
   res.sendFile(path.join(__dirname, process.env.BASE_URL, "/index.html"));
 });
